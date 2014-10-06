@@ -15,5 +15,7 @@ install:
 build: off
 
 test_script:
-  - ps: 'npm run-script test-node && npm run-script test-cli'
-  - cmd: 'npm run-script test-node && npm run-script test-cli'
+  - ps: 'npm run-script test-node #PowerShell'
+  - ps: 'npm run-script test-cli #PowerShell'
+  - cmd: npm run-script test-node
+  - cmd: npm run-script test-cli
