@@ -1,0 +1,39 @@
+{
+  "name": "inline-source-map-comment",
+  "version": "1.0.0",
+  "description": "Create an inline source map comment from a source map",
+  "keywords": [
+    "inline",
+    "sourcemap",
+    "source",
+    "map",
+    "comment",
+    "js",
+    "css"
+  ],
+  "main": "./inline-source-map-comment.js",
+  "homepage": "https://github.com/shinnn/inline-source-map-comment",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shinnn/inline-source-map-comment.git"
+  },
+  "authors": [
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "https://github.com/shinnn"
+    }
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.yml",
+    "bower_components",
+    "coverage",
+    "node_modules",
+    "test",
+    "inline-source-map-comment-cjs.js",
+    "inline-source-map-comment-node.js",
+    "package.json",
+    "component.json"
+  ]
+}

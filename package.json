@@ -1,0 +1,66 @@
+{
+  "name": "inline-source-map-comment",
+  "version": "0.0.0",
+  "description": "Create an inline source map comment from a source map",
+  "repository": "shinnn/inline-source-map-comment",
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "url": "https://github.com/shinnn"
+  },
+  "scripts": {
+    "pretest": "eslint --ignore-path .gitignore . & jscs .",
+    "test-node": "node test/test-api/test-node.js",
+    "test-browser": "testling",
+    "test-cli": "node  test/test-cli/test-cli.js",
+    "test": "${npm_package_scripts_test_node} && ${npm_package_scripts_test_browser} && ${npm_package_scripts_test_cli}",
+    "coverage": "istanbul cover test/test-api/test-node.js",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shinnn/inline-source-map-comment/blob/master/LICENSE"
+    }
+  ],
+  "main": "inline-source-map-comment-node.js",
+  "bin": "cli.js",
+  "files": [
+    "cli.js",
+    "inline-source-map-comment-node.js",
+    "LICENSE"
+  ],
+  "keywords": [
+    "inline",
+    "sourcemap",
+    "source",
+    "map",
+    "comment",
+    "js",
+    "css",
+    "cli",
+    "browser",
+    "client-side"
+  ],
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "get-stdin": "^3.0.0",
+    "minimist": "^1.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^6.0.2",
+    "eslint": "^0.8.2",
+    "istanbul": "^0.3.2",
+    "istanbul-coveralls": "^1.0.1",
+    "jscs": "^1.6.2",
+    "load-pkg": "^0.1.0",
+    "tape": "^3.0.0",
+    "testling": "^1.7.1",
+    "xtend": "^4.0.0"
+  },
+  "testling": {
+    "files": [
+      "test/test-api/test-browser.js",
+      "test/test-api/test-browser-cjs.js"
+    ]
+  }
+}
