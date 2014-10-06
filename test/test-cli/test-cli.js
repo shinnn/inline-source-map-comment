@@ -33,7 +33,7 @@ test('"inline-source-map-comment" command', function(t) {
 
   cmd(['{'])
     .on('close', function(code) {
-      t.equal(code, 8, 'should fail when the string in not a valid JSON.');
+      t.notEqual(code, 0, 'should fail when the string in not a valid JSON.');
       t.ok(
         /SyntaxError/.test(syntaxErr),
         'should print a syntax error when the string in not a valid JSON.'
@@ -80,7 +80,7 @@ test('"inline-source-map-comment" command', function(t) {
 
   cmd(['--in', 'foo'])
     .on('close', function(code) {
-      t.equal(code, 8, 'should fail when the file doesn\'t exist.');
+      t.notEqual(code, 0, 'should fail when the file doesn\'t exist.');
       t.ok(
         /ENOENT/.test(readErr),
         'should print an error when the file doesn\'t exist.'
