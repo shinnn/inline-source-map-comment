@@ -18,10 +18,11 @@ function help() {
     'Usage3: cat <source map file> | ' + pkg.name,
     '',
     'Options:',
-    chalk.yellow('--css, --block, -c, -b') + '  Print a block comment for CSS, instead of line comment',
-    chalk.yellow('--in, --input,  -i    ') + '  Use a JSON file as a source',
-    chalk.yellow('--help,         -h    ') + '  Print usage information',
-    chalk.yellow('--version,      -v    ') + '  Print version',
+    chalk.yellow('--block, --css,    -b, -c') + '  Print a block comment instead of line comment',
+    chalk.yellow('--sources-content, -s    ') + '  Preserve sourcesContent property',
+    chalk.yellow('--in, --input,     -i    ') + '  Use a JSON file as a source',
+    chalk.yellow('--help,            -h    ') + '  Print usage information',
+    chalk.yellow('--version,         -v    ') + '  Print version',
     ''
   ].join('\n'));
 }
@@ -34,15 +35,13 @@ function run(map) {
   map = '' + map;
 
   var inlineSourceMapComment = require('./' + pkg.main);
-  var method;
 
-  if (argv.css || argv.block || argv.c || argv.b) {
-    method = inlineSourceMapComment.css;
-  } else {
-    method = inlineSourceMapComment.js;
-  }
+  var options = {
+    block: argv.css || argv.block || argv.c || argv.b,
+    sourcesContent: argv['sources-content'] || argv.s
+  };
 
-  console.log(method(map));
+  console.log(inlineSourceMapComment(map, options));
 }
 
 var inputFile = argv.in || argv.input || argv.i;

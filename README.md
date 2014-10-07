@@ -49,36 +49,66 @@ var inlineSourceMapComment = require('shinnn/inline-source-map-comment');
 
 ## API
 
-### inlineSourceMapComment.js(*sourceMap*)
-
-alias: `inlineSourceMapComment`
+### inlineSourceMapComment(*sourceMap* [, *options*])
 
 *sourceMap*: `String` or `Object`  
+*options*: `Object`  
 Return: `String`
 
-It returns a line comment of base64-encoded source map.
+It returns a line comment of [base64](http://wikipedia.org/wiki/Base64)-encoded [source map](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k).
 
 Argument can be an object of source map or a JSON string.
 
 ```javascript
 var map = '{"version":3,"file":"foo.js.map","sources":["bar.js"],"names":[],"mappings":"AAAA"}';
 
-inlineSourceMapComment.js(map); //=> "//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vLmpzLm1hcCIsInNvdXJjZXMiOlsiYmFyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIn0="
+inlineSourceMapComment(map); //=> "//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vLmpzLm1hcCIsInNvdXJjZXMiOlsiYmFyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIn0="
 
-inlineSourceMapComment.js(JSON.parse(map)); //=> (Same as `inlineSourceMapComment.js(map)`)
-
-// Just an alias
-inlineSourceMapComment(map); //=> (Same as `inlineSourceMapComment.js(map)`)
+inlineSourceMapComment(JSON.parse(map)); //=> (Same as `inlineSourceMapComment.js(map)`)
 ```
 
-### inlineSourceMapComment.css(*sourceMap*)
+It automatically removes `sourcesContent` property from result. Use [`sourcesContent` option](#optionssourcescontent) if you want to preserve `sourcesContent` property.
 
-It is almost the same as `inlineSourceMapComment.js`, but it returns a block comment instead of line comment. Therefore, it can be used for creating an inline source map of CSS.
+```javascript
+var map = '{"version":3,"file":"foo.js.map","sources":["bar.js"], ...';
+var one = inlineSourceMapComment(map);
+
+map.sourcesContent = 'foo';
+var another inlineSourceMapComment(map);
+
+one === another; //=> true
+```
+
+#### options.block
+
+Type: `Boolean`  
+Default: `false`
+
+Returns a block comment instead of a line comment.
+
+It can be used for creating an inline source map of CSS.
 
 ```javascript
 var map = '{"version":3,"file":"foo.css.map","sources":["bar.js"], ...';
 
-inlineSourceMapComment.css(map) //=> "/* sourceMappingURL=data:application/json;base64,eyJ2ZXJ ... */"
+inlineSourceMapComment(map, {block: true}) //=> "/* sourceMappingURL=data:application/json;base64,eyJ2ZXJ ... */"
+```
+
+#### options.sourcesContent
+
+Type: `Boolean`  
+Default: `false`
+
+Preserves `sourcesContent` property.
+
+### inlineSourceMapComment.prefix
+
+Type: `String`
+
+The prefix string of base64-encoded source map.
+
+```javascript
+inlineSourceMapComment.prefix; //=> "# sourceMappingURL=data:application/json;base64,"
 ```
 
 ## CLI
@@ -100,10 +130,11 @@ Usage2: inline-source-map-comment --in <source map file>
 Usage3: cat <source map file> | inline-source-map-comment
 
 Options:
---css, --block, -c, -b  Print a block comment for CSS, instead of line comment
---in, --input,  -i      Use a JSON file as a source
---help,         -h      Print usage information
---version,      -v      Print version
+--block, --css,    -b, -c  Print a block comment instead of line comment
+--sources-content, -s      Preserve sourcesContent property
+--in, --input,     -i      Use a JSON file as a source
+--help,            -h      Print usage information
+--version,         -v      Print version
 ```
 
 ## License

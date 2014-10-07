@@ -1,7 +1,9 @@
 {
-  "version":3,
+  "version": 3,
   "file": "bars.js.map",
-  "sources": ["foo.js"],
+  "sources": [
+    "foo.js"
+  ],
   "names": [],
   "mappings": "AAAA"
 }

@@ -2,29 +2,44 @@
  * inline-source-map-comment | MIT (c) Shinnosuke Watanabe
  * https://github.com/shinnn/inline-source-map-comment
 */
-'use strict';
 
 (function() {
-  function sourceMapBody(map) {
-    if (typeof map === 'string') {
-      map = JSON.parse(map);
+  'use strict';
+
+  function shallowCopy(obj) {
+    var result = {};
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        result[key] = obj[key];
+      }
+    }
+    return result;
+  }
+
+  window.inlineSourceMapComment = function inlineSourceMapComment(_map, options) {
+    options = options || {};
+    var map;
+
+    if (typeof _map === 'string') {
+      map = JSON.parse(_map);
+    } else {
+      if (arguments.length === 0) {
+        throw new Error('More than one argument required.');
+      }
+      map = shallowCopy(_map);
     }
 
-    delete map.sourcesContent;
+    if (!options.sourcesContent) {
+      delete map.sourcesContent;
+    }
 
-    return '# sourceMappingURL=data:application/json;base64,' +
-           btoa(JSON.stringify(map));
-  }
+    var sourceMapBody = window.inlineSourceMapComment.prefix + btoa(JSON.stringify(map));
 
-  function inlineSourceMapCommentJs(map) {
-    return '//' + sourceMapBody(map);
-  }
+    if (options.block) {
+      return '/* ' + sourceMapBody + ' */';
+    }
+    return '//' + sourceMapBody;
+  };
 
-  function inlineSourceMapCommentCss(map) {
-    return '/* ' + sourceMapBody(map) + ' */';
-  }
-
-  window.inlineSourceMapComment = inlineSourceMapCommentJs;
-  window.inlineSourceMapComment.js = inlineSourceMapCommentJs;
-  window.inlineSourceMapComment.css = inlineSourceMapCommentCss;
+  window.inlineSourceMapComment.prefix = '# sourceMappingURL=data:application/json;base64,';
 })();

@@ -1,19 +1,25 @@
 'use strict';
 
-var EOL = require('os').EOL;
 var spawn = require('child_process').spawn;
 
-var pkg = require('load-pkg');
+var mapPrefix = require('require-main')().prefix;
 var test = require('tape');
-var xtend = require('xtend');
 
-var fixture = require('../fixture.js');
-var fixtureJson = JSON.stringify(fixture.json);
-var expectedLine = '//' + fixture.base64 + EOL;
-var expectedBlock = '/* ' + fixture.base64 + ' */' + EOL;
+var mapJson = '{"version":3,"file":"bars.js.map","sources":["foo.js"],"names":[],"mappings":"AAAA"}';
+var mapBase64 = mapPrefix + new Buffer(mapJson).toString('base64');
+var expectedLine = '//' + mapBase64 + '\n';
+var expectedBlock = '/* ' + mapBase64 + ' */' + '\n';
+
+var mapJsonWithSourcesContent = '{"version":3,"file":"bars.js.map","sources":["foo.js"],"names":[],"mappings":"AAAA","sourcesContent":["0"]}';
+var mapBase64WithSourcesContent = mapPrefix + new Buffer(mapJsonWithSourcesContent).toString('base64');
+
+var expectedLineWithSourcesContent = '//' + mapBase64WithSourcesContent + '\n';
+
+var pkg = require('load-pkg');
+var TMP_FILE_PATH = 'test/test-cli/fixture.js.map';
 
 test('"inline-source-map-comment" command', function(t) {
-  t.plan(17);
+  t.plan(19);
 
   var cmd = function(args) {
     return spawn('node', [pkg.bin].concat(args), {
@@ -21,7 +27,7 @@ test('"inline-source-map-comment" command', function(t) {
     });
   };
 
-  cmd([fixtureJson])
+  cmd([mapJson])
     .stdout.on('data', function(data) {
       t.equal(
         data.toString(), expectedLine,
@@ -43,32 +49,48 @@ test('"inline-source-map-comment" command', function(t) {
       syntaxErr += data.toString();
     });
 
-  cmd([fixtureJson, '--css'])
+  cmd([mapJson, '--css'])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedBlock, 'should print block comment with `--css` flag.');
     });
 
-  cmd([fixtureJson, '--block'])
+  cmd([mapJson, '--block'])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedBlock, 'should accept `--block` alias.');
     });
 
-  cmd([fixtureJson, '--c'])
+  cmd([mapJson, '--c'])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedBlock, 'should accept `--c` alias.');
     });
 
-  cmd([fixtureJson, '--b'])
+  cmd([mapJson, '--b'])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedBlock, 'should accept `--b` alias.');
     });
 
-  cmd([JSON.stringify(xtend(fixture.json, {sourcesContent: 'foo'}))])
+  cmd([mapJsonWithSourcesContent])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedLine, 'should remove `sourcesContent` property.');
     });
 
-  cmd(['--in', 'test/test-cli/fixture-cli.json'])
+  cmd([mapJsonWithSourcesContent, '--sources-content'])
+    .stdout.on('data', function(data) {
+      t.equal(
+        data.toString(), expectedLineWithSourcesContent,
+        'should preserve `sourcesContent` property with --sources-content flag.'
+      );
+    });
+
+  cmd([mapJsonWithSourcesContent, '-s'])
+    .stdout.on('data', function(data) {
+      t.equal(
+        data.toString(), expectedLineWithSourcesContent,
+        'should accept -s alias.'
+      );
+    });
+
+  cmd(['--in', TMP_FILE_PATH])
     .stdout.on('data', function(data) {
       t.equal(
         data.toString(), expectedLine,
@@ -90,12 +112,12 @@ test('"inline-source-map-comment" command', function(t) {
       readErr += data.toString();
     });
 
-  cmd(['--input', 'test/test-cli/fixture-cli.json'])
+  cmd(['--input', TMP_FILE_PATH])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedLine, 'should accept --input alias.');
     });
 
-  cmd(['-i', 'test/test-cli/fixture-cli.json'])
+  cmd(['-i', TMP_FILE_PATH])
     .stdout.on('data', function(data) {
       t.equal(data.toString(), expectedLine, 'should accept -i alias.');
     });
@@ -115,12 +137,12 @@ test('"inline-source-map-comment" command', function(t) {
 
   cmd(['--version'])
     .stdout.on('data', function(data) {
-      t.equal(data.toString(), pkg.version + EOL, 'should print version number with --version flag.');
+      t.equal(data.toString(), pkg.version + '\n', 'should print version number with --version flag.');
     });
 
   cmd(['-v'])
     .stdout.on('data', function(data) {
-      t.equal(data.toString(), pkg.version + EOL, 'should accept -v alias.');
+      t.equal(data.toString(), pkg.version + '\n', 'should accept -v alias.');
     });
 });
 
@@ -140,7 +162,7 @@ test('"inline-source-map-comment" command with pipe (`|`)', function(t) {
       'should print base64-encoded source map comment from STDIN.'
     );
   });
-  cp.stdin.write(fixtureJson);
+  cp.stdin.write(mapJson);
   cp.stdin.end();
 
   var cpEmpty = cmd([]);
