@@ -1,6 +1,6 @@
 {
   "name": "inline-source-map-comment",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Create an inline source map comment from a source map",
   "repository": "shinnn/inline-source-map-comment",
   "author": {
