@@ -22,12 +22,20 @@ module.exports =  function(options) {
 
   test('inlineSourceMapComment on ' + options.environment, function(t) {
 
-    t.plan(9);
+    t.plan(10);
 
     t.equal(
       inlineSourceMapComment(mapData),
       '//' + mapBase64,
       'should create a base64-encoded source map from an object.'
+    );
+
+    var newMapData = xtend({}, mapData);
+    inlineSourceMapComment(newMapData, {sourcesContent: false});
+
+    t.deepEqual(
+      newMapData, mapData,
+      'should not modify the object of its first argument.'
     );
 
     t.equal(
