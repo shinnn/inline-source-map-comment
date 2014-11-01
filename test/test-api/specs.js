@@ -15,7 +15,7 @@ var mapDataWithSourcesContent = xtend(mapData, {sourcesContent: ['0']});
 
 var mapBase64WithSourcesContent = '# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmFycy5qcy5tYXAiLCJzb3VyY2VzIjpbImZvby5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZXNDb250ZW50IjpbIjAiXX0=';
 
-module.exports =  function(options) {
+module.exports = function(options) {
   'use strict';
 
   var inlineSourceMapComment = options.main;

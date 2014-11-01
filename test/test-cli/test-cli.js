@@ -162,8 +162,7 @@ test('"inline-source-map-comment" command with pipe (`|`)', function(t) {
       'should print base64-encoded source map comment from STDIN.'
     );
   });
-  cp.stdin.write(mapJson);
-  cp.stdin.end();
+  cp.stdin.end(mapJson);
 
   var cpEmpty = cmd([]);
   cpEmpty.stdout.on('data', function(data) {
@@ -172,6 +171,5 @@ test('"inline-source-map-comment" command with pipe (`|`)', function(t) {
       'should print usage information when STDIN is empty.'
     );
   });
-  cpEmpty.stdin.write('');
-  cpEmpty.stdin.end();
+  cpEmpty.stdin.end('');
 });
