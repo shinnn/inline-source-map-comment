@@ -47,14 +47,14 @@
     "minimist": "^1.1.0"
   },
   "devDependencies": {
-    "browserify": "^6.0.2",
-    "eslint": "^0.8.2",
+    "browserify": "^6.2.0",
+    "eslint": "^0.9.1",
     "istanbul": "^0.3.2",
     "istanbul-coveralls": "^1.0.1",
-    "jscs": "^1.6.2",
+    "jscs": "^1.7.3",
     "load-pkg": "^0.1.0",
     "require-main": "^0.1.1",
-    "tape": "^3.0.0",
+    "tape": "^3.0.1",
     "testling": "^1.7.1",
     "xtend": "^4.0.0"
   },
