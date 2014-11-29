@@ -3,15 +3,28 @@
 
 var fs = require('fs');
 
-var argv = require('minimist')(process.argv.slice(2));
-var pkg = require('./package.json');
+var argv = require('minimist')(process.argv.slice(2), {
+  alias: {
+    css: 'block',
+    b: 'block',
+    c: 'block',
+    s: 'sources-content',
+    'in': 'input',
+    i: 'input',
+    h: 'help',
+    v: 'version'
+  },
+  string: ['_', 'input'],
+  boolean: ['block', 'sources-content', 'help', 'version']
+});
 
 function help() {
   var chalk = require('chalk');
+  var pkg = require('./package.json');
+  var sumUp = require('sum-up');
 
   console.log([
-    chalk.cyan(pkg.name) + chalk.gray(' v' + pkg.version),
-    pkg.description,
+    sumUp(pkg),
     '',
     'Usage1: ' + pkg.name + ' <source map string>',
     'Usage2: ' + pkg.name + ' --in <source map file>',
@@ -32,23 +45,22 @@ function run(map) {
     help();
     return;
   }
-  map = '' + map;
 
-  var inlineSourceMapComment = require('./' + pkg.main);
+  var inlineSourceMapComment = require('./');
 
   var options = {
-    block: argv.css || argv.block || argv.c || argv.b,
-    sourcesContent: argv['sources-content'] || argv.s
+    block: argv.block,
+    sourcesContent: argv['sources-content']
   };
 
   console.log(inlineSourceMapComment(map, options));
 }
 
-var inputFile = argv.in || argv.input || argv.i;
+var inputFile = argv.input;
 
-if (argv.version || argv.v) {
-  console.log(pkg.version);
-} else if (argv.help || argv.h) {
+if (argv.version) {
+  console.log(require('./package.json').version);
+} else if (argv.help) {
   help();
 } else if (inputFile) {
   run(fs.readFileSync(inputFile).toString('utf8'));
