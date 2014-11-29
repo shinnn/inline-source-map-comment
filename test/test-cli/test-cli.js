@@ -2,7 +2,7 @@
 
 var spawn = require('child_process').spawn;
 
-var mapPrefix = require('require-main')().prefix;
+var mapPrefix = require('../../').prefix;
 var test = require('tape');
 
 var mapJson = '{"version":3,"file":"bars.js.map","sources":["foo.js"],"names":[],"mappings":"AAAA"}';
@@ -15,7 +15,7 @@ var mapBase64WithSourcesContent = mapPrefix + new Buffer(mapJsonWithSourcesConte
 
 var expectedLineWithSourcesContent = '//' + mapBase64WithSourcesContent + '\n';
 
-var pkg = require('load-pkg');
+var pkg = require('../../package.json');
 var TMP_FILE_PATH = 'test/test-cli/fixture.js.map';
 
 test('"inline-source-map-comment" command', function(t) {
