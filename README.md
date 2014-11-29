@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/shinnn/inline-source-map-comment.svg?branch=master)](https://travis-ci.org/shinnn/inline-source-map-comment)
 [![Build status](https://ci.appveyor.com/api/projects/status/57fmdhy41qainu8g)](https://ci.appveyor.com/project/ShinnosukeWatanabe/inline-source-map-comment)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/inline-source-map-comment.svg)](https://coveralls.io/r/shinnn/inline-source-map-comment)
+[![Dependency Status](https://david-dm.org/shinnn/inline-source-map-comment.svg)](https://david-dm.org/shinnn/inline-source-map-comment)
 [![devDependency Status](https://david-dm.org/shinnn/inline-source-map-comment/dev-status.svg)](https://david-dm.org/shinnn/inline-source-map-comment#info=devDependencies)
 
 Create an inline source map comment from a source map object or string
