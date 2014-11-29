@@ -16,5 +16,8 @@
   "scripts": [
     "inline-source-map-comment-cjs.js"
   ],
+  "files": [
+    "LICENSE"
+  ],
   "license": "MIT"
 }

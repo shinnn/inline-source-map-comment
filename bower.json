@@ -1,6 +1,5 @@
 {
   "name": "inline-source-map-comment",
-  "version": "1.0.0",
   "description": "Create an inline source map comment from a source map",
   "keywords": [
     "inline",
@@ -31,6 +30,7 @@
     "coverage",
     "node_modules",
     "test",
+    "cli.js",
     "inline-source-map-comment-cjs.js",
     "inline-source-map-comment-node.js",
     "package.json",
