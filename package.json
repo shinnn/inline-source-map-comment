@@ -58,6 +58,13 @@
     "testling": "^1.7.1",
     "xtend": "^4.0.0"
   },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": null,
+    "excludeFiles": [
+      "{coverage,node_modules}/**"
+    ]
+  },
   "testling": {
     "files": [
       "test/test-api/test-browser.js",
