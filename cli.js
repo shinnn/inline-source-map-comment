@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-var fs = require('fs');
-
 var argv = require('minimist')(process.argv.slice(2), {
   alias: {
     css: 'block',
@@ -19,7 +17,7 @@ var argv = require('minimist')(process.argv.slice(2), {
 });
 
 function help() {
-  var chalk = require('chalk');
+  var yellow = require('chalk').yellow;
   var pkg = require('./package.json');
   var sumUp = require('sum-up');
 
@@ -31,11 +29,11 @@ function help() {
     'Usage3: cat <source map file> | ' + pkg.name,
     '',
     'Options:',
-    chalk.yellow('--block, --css,    -b, -c') + '  Print a block comment instead of line comment',
-    chalk.yellow('--sources-content, -s    ') + '  Preserve sourcesContent property',
-    chalk.yellow('--in, --input,     -i    ') + '  Use a JSON file as a source',
-    chalk.yellow('--help,            -h    ') + '  Print usage information',
-    chalk.yellow('--version,         -v    ') + '  Print version',
+    yellow('--block, --css,    -b, -c') + '  Print a block comment instead of line comment',
+    yellow('--sources-content, -s    ') + '  Preserve sourcesContent property',
+    yellow('--in, --input,     -i    ') + '  Use a JSON file as a source',
+    yellow('--help,            -h    ') + '  Print usage information',
+    yellow('--version,         -v    ') + '  Print version',
     ''
   ].join('\n'));
 }
@@ -63,7 +61,8 @@ if (argv.version) {
 } else if (argv.help) {
   help();
 } else if (inputFile) {
-  run(fs.readFileSync(inputFile).toString('utf8'));
+  var fs = require('fs');
+  run(fs.readFileSync(inputFile, 'utf8'));
 } else if (process.stdin.isTTY) {
   run(argv._[0]);
 } else {
