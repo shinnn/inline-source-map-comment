@@ -1,4 +1,4 @@
 require('./specs.js')({
   environment: 'Node',
-  main: require('../../')
+  main: require('..')
 });

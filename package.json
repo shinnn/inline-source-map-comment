@@ -10,10 +10,11 @@
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore . && jscs .",
     "test-node": "node test/test-api/test-node.js",
+    "test-node": "node test-api/test-node.js",
     "test-browser": "testling",
-    "test-cli": "node test/test-cli/test-cli.js",
+    "test-cli": "node test-cli/test-cli.js",
     "test": "${npm_package_scripts_test_node} && ${npm_package_scripts_test_browser} && ${npm_package_scripts_test_cli}",
-    "coverage": "istanbul cover test/test-api/test-node.js",
+    "coverage": "istanbul cover test-api/test-node.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
   "licenses": [
@@ -48,8 +49,8 @@
     "sum-up": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^0.10.0",
-    "istanbul": "^0.3.2",
+    "eslint": "^0.10.2",
+    "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
     "jscs": "^1.8.1",
     "tape": "^3.0.3",
@@ -59,14 +60,15 @@
   "jscsConfig": {
     "preset": "google",
     "maximumLineLength": null,
+    "validateLineBreaks": "LF",
     "excludeFiles": [
       "{coverage,node_modules}/**"
     ]
   },
   "testling": {
     "files": [
-      "test/test-api/test-browser.js",
-      "test/test-api/test-browser-cjs.js"
+      "test-api/test-browser.js",
+      "test-api/test-browser-cjs.js"
     ]
   }
 }
