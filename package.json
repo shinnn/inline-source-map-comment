@@ -8,11 +8,11 @@
     "url": "https://github.com/shinnn"
   },
   "scripts": {
-    "pretest": "eslint --ignore-path .gitignore . && jscs .",
-    "test-node": "node test-api/test-node.js",
-    "test-browser": "testling",
-    "test-cli": "node test-cli/test-cli.js",
-    "test": "${npm_package_scripts_test_node} && ${npm_package_scripts_test_browser} && ${npm_package_scripts_test_cli}",
+    "pretest": "jscs . && eslint --ignore-path .gitignore .",
+    "test-node": "node test-api/test-node.js | tap-spec",
+    "test-browser": "testling | tap-spec",
+    "test-cli": "node test-cli/test-cli.js | tap-spec",
+    "test": "npm run test-node && npm run test-browser && npm run test-cli",
     "coverage": "istanbul cover test-api/test-node.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },

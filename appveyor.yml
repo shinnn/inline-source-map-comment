@@ -16,10 +16,10 @@ install:
 build: off
 
 test_script:
-  - ps: 'npm run-script test-node #PowerShell'
-  - ps: 'npm run-script test-cli #PowerShell'
-  - cmd: npm run-script test-node
-  - cmd: npm run-script test-cli
+  - ps: 'node test-api/test-node.js #PowerShell'
+  - ps: 'node test-cli/test-cli.js #PowerShell'
+  - cmd: node test-api/test-node.js
+  - cmd: node test-cli/test-cli.js
 
 cache:
   - node_modules
