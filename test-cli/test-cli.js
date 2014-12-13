@@ -18,7 +18,7 @@ var expectedLineWithSourcesContent = '//' + mapBase64WithSourcesContent + '\n';
 var pkg = require('../package.json');
 var TMP_FILE_PATH = 'test-cli/fixture.js.map';
 
-test('"inline-source-map-comment" command', function(t) {
+test('"inline-source-map-comment" inside TTY context', function(t) {
   t.plan(19);
 
   var cmd = function(args) {
@@ -127,7 +127,7 @@ test('"inline-source-map-comment" command', function(t) {
   });
 });
 
-test('"inline-source-map-comment" command with pipe (`|`)', function(t) {
+test('"inline-source-map-comment" command outside TTY context', function(t) {
   t.plan(2);
 
   var cmd = function(args) {
