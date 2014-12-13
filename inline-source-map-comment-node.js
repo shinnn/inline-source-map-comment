@@ -4,15 +4,7 @@
 */
 'use strict';
 
-function shallowCopy(obj) {
-  var result = {};
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      result[key] = obj[key];
-    }
-  }
-  return result;
-}
+var xtend = require('xtend');
 
 module.exports = function inlineSourceMapComment(_map, options) {
   options = options || {};
@@ -24,7 +16,7 @@ module.exports = function inlineSourceMapComment(_map, options) {
     if (arguments.length === 0) {
       throw new Error('More than one argument required.');
     }
-    map = shallowCopy(_map);
+    map = xtend(_map);
   }
 
   if (!options.sourcesContent) {
