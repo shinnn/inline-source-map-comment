@@ -5,6 +5,7 @@ rules:
   no-extra-parens: 2
   eqeqeq: 2
   block-scoped-var: 2
+  no-process-exit: 0
   quotes:
     - 2
     - single

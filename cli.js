@@ -17,9 +17,10 @@ var argv = require('minimist')(process.argv.slice(2), {
 });
 
 function help() {
-  var yellow = require('chalk').yellow;
-  var pkg = require('./package.json');
   var sumUp = require('sum-up');
+  var yellow = require('chalk').yellow;
+
+  var pkg = require('./package.json');
 
   console.log([
     sumUp(pkg),
@@ -46,12 +47,10 @@ function run(map) {
 
   var inlineSourceMapComment = require('./');
 
-  var options = {
+  console.log(inlineSourceMapComment(map, {
     block: argv.block,
     sourcesContent: argv['sources-content']
-  };
-
-  console.log(inlineSourceMapComment(map, options));
+  }));
 }
 
 var inputFile = argv.input;
@@ -62,7 +61,13 @@ if (argv.version) {
   help();
 } else if (inputFile) {
   var fs = require('fs');
-  run(fs.readFileSync(inputFile, 'utf8'));
+  try {
+    run(fs.readFileSync(inputFile, 'utf8'));
+  } catch (e) {
+    process.stderr.write(e.stack + '\n', function() {
+      process.exit(1);
+    });
+  }
 } else if (process.stdin.isTTY) {
   run(argv._[0]);
 } else {
