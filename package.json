@@ -9,7 +9,6 @@
   },
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore . && jscs .",
-    "test-node": "node test/test-api/test-node.js",
     "test-node": "node test-api/test-node.js",
     "test-browser": "testling",
     "test-cli": "node test-cli/test-cli.js",
@@ -24,9 +23,11 @@
     }
   ],
   "main": "inline-source-map-comment-node.js",
+  "browser": "inline-source-map-comment-cjs.js",
   "bin": "cli.js",
   "files": [
     "cli.js",
+    "inline-source-map-comment-cjs.js",
     "inline-source-map-comment-node.js",
     "LICENSE"
   ],
