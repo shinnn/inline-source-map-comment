@@ -26,15 +26,15 @@ inlineSourceMapComment(fixture); //=> "//# sourceMappingURL=data:application/jso
 
 ### Package managers
 
-#### [npm](https://www.npmjs.org/) [![NPM version](https://badge.fury.io/js/inline-source-map-comment.svg)](https://www.npmjs.org/package/inline-source-map-comment)
+#### [npm](https://www.npmjs.org/) [![NPM version](https://badge.fury.io/js/inline-source-map-comment.svg)](https://www.npmjs.com/package/inline-source-map-comment)
 
-```
+```sh
 npm install inline-source-map-comment
 ```
 
 #### [bower](http://bower.io/) [![Bower version](https://badge.fury.io/bo/inline-source-map-comment.svg)](https://github.com/shinnn/inline-source-map-comment/releases)
 
-```
+```sh
 bower install inline-source-map-comment
 ```
 
@@ -114,18 +114,15 @@ inlineSourceMapComment.prefix; //=> "# sourceMappingURL=data:application/json;ba
 
 ## CLI
 
-You can use this module as a CLI tool by installing it [globally](https://www.npmjs.org/doc/files/npm-folders.html#global-installation).
+You can use this module as a CLI tool by installing it [globally](https://docs.npmjs.com/files/folders#global-installation).
 
-```
+```sh
 npm install -g inline-source-map-comment
 ```
 
 ### Usage
 
-```
-inline-source-map-comment v1.0.0
-Create an inline source map comment from a source map
-
+```sh
 Usage1: inline-source-map-comment <source map string>
 Usage2: inline-source-map-comment --in <source map file>
 Usage3: cat <source map file> | inline-source-map-comment
