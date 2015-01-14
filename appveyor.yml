@@ -17,9 +17,7 @@ build: off
 
 test_script:
   - ps: 'node test-api/test-node.js #PowerShell'
-  - ps: 'node test-cli/test-cli.js #PowerShell'
   - cmd: node test-api/test-node.js
-  - cmd: node test-cli/test-cli.js
 
 cache:
   - node_modules
