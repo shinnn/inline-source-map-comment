@@ -29,7 +29,7 @@ inlineSourceMapComment(fixture); //=> "//# sourceMappingURL=data:application/jso
 [![NPM version](https://img.shields.io/npm/v/inline-source-map-comment.svg?style=flat)](https://www.npmjs.com/package/inline-source-map-comment)
 [![Bower version](https://img.shields.io/bower/v/inline-source-map-comment.svg?style=flat)](https://github.com/shinnn/inline-source-map-comment/releases)
 
-#### [npm](https://www.npmjs.org/)
+#### [npm](https://www.npmjs.com/)
 
 ```sh
 npm install inline-source-map-comment
