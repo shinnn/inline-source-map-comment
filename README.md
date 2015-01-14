@@ -1,8 +1,8 @@
 # inline-source-map-comment
 
 [![Build Status](https://travis-ci.org/shinnn/inline-source-map-comment.svg?branch=master)](https://travis-ci.org/shinnn/inline-source-map-comment)
-[![Build status](https://ci.appveyor.com/api/projects/status/57fmdhy41qainu8g)](https://ci.appveyor.com/project/ShinnosukeWatanabe/inline-source-map-comment)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/inline-source-map-comment.svg)](https://coveralls.io/r/shinnn/inline-source-map-comment)
+[![Build status](https://ci.appveyor.com/api/projects/status/57fmdhy41qainu8g?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/inline-source-map-comment)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/inline-source-map-comment.svg?style=flat)](https://coveralls.io/r/shinnn/inline-source-map-comment)
 [![Dependency Status](https://david-dm.org/shinnn/inline-source-map-comment.svg)](https://david-dm.org/shinnn/inline-source-map-comment)
 [![devDependency Status](https://david-dm.org/shinnn/inline-source-map-comment/dev-status.svg)](https://david-dm.org/shinnn/inline-source-map-comment#info=devDependencies)
 
@@ -26,13 +26,16 @@ inlineSourceMapComment(fixture); //=> "//# sourceMappingURL=data:application/jso
 
 ### Package managers
 
-#### [npm](https://www.npmjs.org/) [![NPM version](https://badge.fury.io/js/inline-source-map-comment.svg)](https://www.npmjs.com/package/inline-source-map-comment)
+[![NPM version](https://img.shields.io/npm/v/inline-source-map-comment.svg?style=flat)](https://www.npmjs.com/package/inline-source-map-comment)
+[![Bower version](https://img.shields.io/bower/v/inline-source-map-comment.svg?style=flat)](https://github.com/shinnn/inline-source-map-comment/releases)
+
+#### [npm](https://www.npmjs.org/)
 
 ```sh
 npm install inline-source-map-comment
 ```
 
-#### [bower](http://bower.io/) [![Bower version](https://badge.fury.io/bo/inline-source-map-comment.svg)](https://github.com/shinnn/inline-source-map-comment/releases)
+#### [bower](http://bower.io/)
 
 ```sh
 bower install inline-source-map-comment
@@ -137,6 +140,6 @@ Options:
 
 ## License
 
-Copyright (c) 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
