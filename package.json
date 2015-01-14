@@ -9,9 +9,9 @@
   },
   "scripts": {
     "pretest": "jscs *.js test-*/*.js && eslint *.js test-*/*.js",
-    "test-node": "tape test-api/test-node.js test-cli/test-cli.js | tap-spec",
-    "test-browser": "testling | tap-spec",
-    "test": "npm run test-node && npm run test-browser",
+    "test-node": "tape test-api/test-node.js test-cli/test-cli.js",
+    "test-browser": "testling",
+    "test": "${npm_package_scripts_test_node} | tap-spec && ${npm_package_scripts_test_browser} | tap-spec",
     "coverage": "istanbul cover test-api/test-node.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
