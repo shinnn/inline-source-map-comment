@@ -6,20 +6,19 @@
 
 var xtend = require('xtend');
 
-module.exports = function inlineSourceMapComment(_map, options) {
+module.exports = function inlineSourceMapComment(map, options) {
   options = options || {};
-  var map;
 
-  if (typeof _map === 'string') {
-    map = JSON.parse(_map);
+  if (typeof map === 'string') {
+    map = JSON.parse(map);
   } else {
     if (arguments.length === 0) {
       throw new Error('More than one argument required.');
     }
-    map = xtend(_map);
   }
 
   if (!options.sourcesContent) {
+    map = xtend(map);
     delete map.sourcesContent;
   }
 

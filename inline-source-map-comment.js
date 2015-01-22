@@ -16,20 +16,19 @@
     return result;
   }
 
-  window.inlineSourceMapComment = function inlineSourceMapComment(_map, options) {
+  window.inlineSourceMapComment = function inlineSourceMapComment(map, options) {
     options = options || {};
-    var map;
 
-    if (typeof _map === 'string') {
-      map = JSON.parse(_map);
+    if (typeof map === 'string') {
+      map = JSON.parse(map);
     } else {
       if (arguments.length === 0) {
         throw new Error('More than one argument required.');
       }
-      map = shallowCopy(_map);
     }
 
     if (!options.sourcesContent) {
+      map = shallowCopy(map);
       delete map.sourcesContent;
     }
 
