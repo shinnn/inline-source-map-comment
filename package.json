@@ -1,6 +1,6 @@
 {
   "name": "inline-source-map-comment",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create an inline source map comment from a source map",
   "repository": "shinnn/inline-source-map-comment",
   "author": {
@@ -27,8 +27,7 @@
   "files": [
     "cli.js",
     "inline-source-map-comment-cjs.js",
-    "inline-source-map-comment-node.js",
-    "LICENSE"
+    "inline-source-map-comment-node.js"
   ],
   "keywords": [
     "inline",
