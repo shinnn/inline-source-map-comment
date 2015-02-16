@@ -1,10 +1,12 @@
 # inline-source-map-comment
 
+[![NPM version](https://img.shields.io/npm/v/inline-source-map-comment.svg)](https://www.npmjs.com/package/inline-source-map-comment)
+[![Bower version](https://img.shields.io/bower/v/inline-source-map-comment.svg)](https://github.com/shinnn/inline-source-map-comment/releases)
 [![Build Status](https://travis-ci.org/shinnn/inline-source-map-comment.svg?branch=master)](https://travis-ci.org/shinnn/inline-source-map-comment)
 [![Build status](https://ci.appveyor.com/api/projects/status/57fmdhy41qainu8g?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/inline-source-map-comment)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/inline-source-map-comment.svg?style=flat)](https://coveralls.io/r/shinnn/inline-source-map-comment)
-[![Dependency Status](https://david-dm.org/shinnn/inline-source-map-comment.svg)](https://david-dm.org/shinnn/inline-source-map-comment)
-[![devDependency Status](https://david-dm.org/shinnn/inline-source-map-comment/dev-status.svg)](https://david-dm.org/shinnn/inline-source-map-comment#info=devDependencies)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/inline-source-map-comment.svg?label=cov)](https://coveralls.io/r/shinnn/inline-source-map-comment)
+[![Dependency Status](https://img.shields.io/david/shinnn/inline-source-map-comment.svg?label=deps)](https://david-dm.org/shinnn/inline-source-map-comment)
+[![devDependency Status](https://img.shields.io/david/shinnn/inline-source-map-comment.svg?label=devDeps)](https://david-dm.org/shinnn/inline-source-map-comment#info=devDependencies)
 
 Create an inline source map comment from a source map object or string
 
@@ -19,15 +21,13 @@ var fixture = {
   mappings: 'AAAA'
 };
 
-inlineSourceMapComment(fixture); //=> "//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3V0cHV0LmpzLm1hcCIsInNvdXJjZXMiOlsiaW5wdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEifQ=="
+inlineSourceMapComment(fixture);
+//=> "//# sourceMappingURL=data:application/json;base64,eyJ2ZXJza ..."
 ```
 
 ## Installation
 
 ### Package managers
-
-[![NPM version](https://img.shields.io/npm/v/inline-source-map-comment.svg?style=flat)](https://www.npmjs.com/package/inline-source-map-comment)
-[![Bower version](https://img.shields.io/bower/v/inline-source-map-comment.svg?style=flat)](https://github.com/shinnn/inline-source-map-comment/releases)
 
 #### [npm](https://www.npmjs.com/)
 
@@ -64,11 +64,13 @@ It returns a line comment of [base64](http://wikipedia.org/wiki/Base64)-encoded 
 Argument can be an object of source map or a JSON string.
 
 ```javascript
-var map = '{"version":3,"file":"foo.js.map","sources":["bar.js"],"names":[],"mappings":"AAAA"}';
+var map = '{"version":3,"file":"a.js.map","sources":["b.js"],"names":[],"mappings":"AAAA"}';
 
-inlineSourceMapComment(map); //=> "//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9vLmpzLm1hcCIsInNvdXJjZXMiOlsiYmFyLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBIn0="
+inlineSourceMapComment(map);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uI ... "
 
-inlineSourceMapComment(JSON.parse(map)); //=> (Same as `inlineSourceMapComment.js(map)`)
+inlineSourceMapComment(JSON.parse(map));
+//=> (Same as `inlineSourceMapComment.js(map)`)
 ```
 
 It automatically removes `sourcesContent` property from result. Use [`sourcesContent` option](#optionssourcescontent) if you want to preserve `sourcesContent` property.
@@ -95,7 +97,8 @@ It can be used for creating an inline source map of CSS.
 ```javascript
 var map = '{"version":3,"file":"foo.css.map","sources":["bar.js"], ...';
 
-inlineSourceMapComment(map, {block: true}) //=> "/* sourceMappingURL=data:application/json;base64,eyJ2ZXJ ... */"
+inlineSourceMapComment(map, {block: true});
+//=> "/* sourceMappingURL=data:application/json;base64,eyJ2ZXJ ... */"
 ```
 
 #### options.sourcesContent
@@ -103,16 +106,17 @@ inlineSourceMapComment(map, {block: true}) //=> "/* sourceMappingURL=data:applic
 Type: `Boolean`  
 Default: `false`
 
-Preserves `sourcesContent` property.
+Preserves `sourcesConteThe prefix string of basent` property.
 
 ### inlineSourceMapComment.prefix
 
 Type: `String`
 
-The prefix string of base64-encoded source map.
+64-encoded source map.
 
 ```javascript
-inlineSourceMapComment.prefix; //=> "# sourceMappingURL=data:application/json;base64,"
+inlineSourceMapComment.prefix;
+//=> "# sourceMappingURL=data:application/json;base64,"
 ```
 
 ## CLI
@@ -140,6 +144,6 @@ Options:
 
 ## License
 
-Copyright (c) [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
