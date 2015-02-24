@@ -42,15 +42,15 @@
     "client-side"
   ],
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "get-stdin": "^4.0.1",
     "minimist": "^1.1.0",
-    "sum-up": "^1.0.0",
+    "sum-up": "^1.0.1",
     "xtend": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^0.14.1",
-    "istanbul": "^0.3.5",
+    "eslint": "^0.15.0",
+    "istanbul": "^0.3.6",
     "istanbul-coveralls": "^1.0.1",
     "jscs": "^1.11.3",
     "tap-spec": "^2.2.1",
