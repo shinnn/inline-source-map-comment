@@ -59,7 +59,7 @@ var inlineSourceMapComment = require('shinnn/inline-source-map-comment');
 *options*: `Object`  
 Return: `String`
 
-It returns a line comment of [base64](http://wikipedia.org/wiki/Base64)-encoded [source map](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k).
+It returns a line comment of [base64](https://wikipedia.org/wiki/Base64)-encoded [source map](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k).
 
 Argument can be an object of source map or a JSON string.
 
@@ -90,9 +90,7 @@ one === another; //=> true
 Type: `Boolean`  
 Default: `false`
 
-Returns a block comment instead of a line comment.
-
-It can be used for creating an inline source map of CSS.
+Returns a block comment instead of a line comment. It can be used for creating CSS source maps.
 
 ```javascript
 var map = '{"version":3,"file":"foo.css.map","sources":["bar.js"], ...';
@@ -112,7 +110,7 @@ Preserves `sourcesConteThe prefix string of basent` property.
 
 Type: `String`
 
-64-encoded source map.
+A common part of a Base64-encoded source map comment.
 
 ```javascript
 inlineSourceMapComment.prefix;
