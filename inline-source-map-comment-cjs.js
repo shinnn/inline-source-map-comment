@@ -33,7 +33,7 @@ module.exports = function inlineSourceMapComment(map, options) {
   var sourceMapBody = module.exports.prefix + btoa(JSON.stringify(map));
 
   if (options.block) {
-    return '/* ' + sourceMapBody + ' */';
+    return '/*' + sourceMapBody + ' */';
   }
   return '//' + sourceMapBody;
 };

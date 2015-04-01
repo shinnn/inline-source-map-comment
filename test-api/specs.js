@@ -68,7 +68,7 @@ module.exports = function runTest(options) {
 
     t.equal(
       inlineSourceMapComment(mapData, {block: true}),
-      '/* ' + mapBase64 + ' */',
+      '/*' + mapBase64 + ' */',
       'should create a block comment when `block` option is enabled.'
     );
 

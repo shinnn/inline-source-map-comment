@@ -25,7 +25,7 @@ module.exports = function inlineSourceMapComment(map, options) {
   var sourceMapBody = module.exports.prefix + new Buffer(JSON.stringify(map)).toString('base64');
 
   if (options.block) {
-    return '/* ' + sourceMapBody + ' */';
+    return '/*' + sourceMapBody + ' */';
   }
   return '//' + sourceMapBody;
 };

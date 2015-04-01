@@ -8,7 +8,7 @@ var test = require('tape');
 var mapJson = '{"version":3,"file":"bars.js.map","sources":["foo.js"],"names":[],"mappings":"AAAA"}';
 var mapBase64 = mapPrefix + new Buffer(mapJson).toString('base64');
 var expectedLine = '//' + mapBase64 + '\n';
-var expectedBlock = '/* ' + mapBase64 + ' */' + '\n';
+var expectedBlock = '/*' + mapBase64 + ' */' + '\n';
 
 var mapJsonWithSourcesContent = '{"version":3,"file":"bars.js.map","sources":["foo.js"],"names":[],"mappings":"AAAA","sourcesContent":["0"]}';
 var mapBase64WithSourcesContent = mapPrefix + new Buffer(mapJsonWithSourcesContent).toString('base64');

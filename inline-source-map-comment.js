@@ -35,7 +35,7 @@
     var sourceMapBody = window.inlineSourceMapComment.prefix + btoa(JSON.stringify(map));
 
     if (options.block) {
-      return '/* ' + sourceMapBody + ' */';
+      return '/*' + sourceMapBody + ' */';
     }
     return '//' + sourceMapBody;
   };
