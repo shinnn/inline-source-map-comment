@@ -104,7 +104,7 @@ inlineSourceMapComment(map, {block: true});
 Type: `Boolean`  
 Default: `false`
 
-Preserves `sourcesConteThe prefix string of basent` property.
+Preserves the `sourcesContent` property.
 
 ### inlineSourceMapComment.prefix
 
